@@ -54,10 +54,14 @@ app.get("/listings/:id", async(req,res)=>{
 })
 //Create Route
 app.post("/listings", async(req,res)=>{
+    try{
     let listing = req.body.listing;
     let newListing = new Listing(listing);
     await newListing.save();
     res.redirect("/listings");
+    } catch (err) {
+        next(err);
+    }
 });
 
 //Edit Route
@@ -69,19 +73,31 @@ app.get("/listings/:id/edit", async(req,res)=>{
 
 //Update Route
 app.put("/listings/:id", async (req, res) => {
+    try {
     let { id } = req.params;
     await Listing.findByIdAndUpdate(id, { ...req.body.listing });
     res.redirect(`/listings/${id}`);
+    } catch (err) {
+        next(err);
+    }
 });
 
 //Delete Route
 app.delete("/listings/:id", async (req, res) => {
+    try {
     let { id } = req.params;
     let deletedListing=await Listing.findByIdAndDelete(id);
     console.log(deletedListing);
     res.redirect("/listings");
+    } catch (err) {
+        console.log(err);
+        next(err);
+    }
 });
 
+app.use((err, req, res, next) => {
+    res.send("Something went wrong!");
+});
 
 
 
