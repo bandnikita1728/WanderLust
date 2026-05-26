@@ -3,17 +3,28 @@
 <div class="row" style="margin-top: 3rem;">
   <div class="col-8 offset-2">
     <h3>Create a New Listing</h3>
-    <form method="POST" action="/listings">
+    <form method="POST" action="/listings" novalidate class="needs-validation">
       <div>
       <lable for="title" class="form-label">Title</lable>
-      <input name="listing[title]" placeholder="enter title" type="text" class="form-control" />
+      <input name="listing[title]" placeholder="enter title" type="text" class="form-control" required />
+      </div>
+      <div class="valid-feedback">
+        Title is valid!
       </div>
       <div>
       <lable for="description" class="form-label">Description</lable>
       <textarea
         name="listing[description]"
         placeholder="enter description"
-      class="form-control"></textarea>
+        class="form-control" 
+        required
+      ></textarea>
+      <div class="valid-feedback">
+        Description is valid!
+      </div>
+      <div class="invalid-feedback">
+        Description is invalid!
+      </div>
       </div>
       
       <div>
@@ -24,16 +35,33 @@
         type="text"
         class="form-control"
       /></div>
-      
+      <div class="valid-feedback">
+        Image is valid!
+      </div>
+      <div class="invalid-feedback">
+        Image is invalid!
+      </div>  
       
       <div>
       <lable for="price" class="form-label">Price</lable>
-      <input name="listing[price]" placeholder="enter price" type="number" class="form-control" />
+      <input name="listing[price]" placeholder="enter price" type="number" class="form-control" required />
+      </div>
+      <div class="valid-feedback">
+        Price is valid!
+      </div>
+      <div class="invalid-feedback">
+        Price is invalid!
       </div>
      
       <div>
       <lable for="country" class="form-label">Country</lable>
-      <input name="listing[country]" placeholder="enter country" type="text" class="form-control" />
+      <input name="listing[country]" placeholder="enter country" type="text" class="form-control" required />
+      </div>
+      <div class="valid-feedback">
+        Country is valid!
+      </div>
+      <div class="invalid-feedback">
+        Country is invalid!
       </div>
      
 
@@ -44,6 +72,7 @@
         placeholder="enter location"
         type="text"
         class="form-control"
+        required
       /></div>
       
       <button class="btn btn-dark add-btn mt-3" >Add</button>
